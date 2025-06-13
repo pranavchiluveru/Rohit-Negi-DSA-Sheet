@@ -14,7 +14,7 @@
 
 
 
-
+Approach 1: 
 class Solution{
     public:
     bool check(vector<int>& arr1, vector<int>& arr2) {
@@ -31,3 +31,29 @@ class Solution{
         return true;
     }
 };
+
+TC=O(nlogn) SC=O(1)
+
+Approach 2:
+bool checkEqual(vector<int>& a, vector<int>& b) {
+  	int n = a.size(), m = b.size();
+    if (n != m)
+        return false;
+
+    unordered_map<int, int> mp;
+    for (int i = 0; i < n; i++)
+        mp[a[i]]++;
+
+    for (int i = 0; i < n; i++) {
+        if (mp.find(b[i]) == mp.end())
+            return false;
+
+        if (mp[b[i]] == 0)
+            return false;
+      
+        mp[b[i]]--;
+    }
+    return true;
+}
+TC=O(n) SC=O(n)
+
